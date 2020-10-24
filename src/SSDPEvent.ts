@@ -1,8 +1,7 @@
 import { getLogger } from "@log4js-node/log4js-api";
 
-const logger = getLogger("ssdp-events");
 
-export class SSDPEvent {
+export class SSDPNotifyEvent {
   host = "";
   location = "";
   opt = "";
@@ -13,22 +12,18 @@ export class SSDPEvent {
   usn = "";
   other: { name: string; value: string }[] = [];
 
-  init = (ssdpResponse: string) => {
+  constructor(ssdpResponse: string) {
     const responseLines: string[] = ssdpResponse.split(/\r?\n/);
 
-    logger.debug("Response Lines:" + responseLines);
-
     responseLines.forEach((line: string) => {
-      let header_value:string[] = line.split(":", 2);
+      const header_value: string[] = line.split(":", 1);
 
-      if(header_value.length == 2) {
-
-        let header:string = header_value[0];
-        let value:string = header_value[1];
+      if (header_value.length == 2) {
+        const header: string = header_value[0];
+        const value: string = header_value[1];
 
         switch (header.trim()) {
           case "HOST":
-            logger.debug("found host: " + value.trim());
             this.host = value.trim();
             break;
           case "LOCATION":
@@ -57,9 +52,8 @@ export class SSDPEvent {
             break;
         }
       } else {
-        logger.debug("Not of header:value format, adding to other field");
-        this.other.push({ name: header_value[0], value: ""})
+        this.other.push({ name: header_value[0], value: "" });
       }
     });
-  }
+  };
 }
