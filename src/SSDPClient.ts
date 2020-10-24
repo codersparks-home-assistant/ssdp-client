@@ -32,14 +32,15 @@ class SSDPClient extends EventEmitter {
       const ssdpMessage = message.toString();
       logger.debug("Message received: " + ssdpMessage);
 
-      const event = new SSDPEvent(ssdpMessage);
+      const event = new SSDPEvent();
+      event.init(ssdpMessage);
 
       logger.debug("Emitting SSDP Message");
       logger.debug(event);
 
+
       this.emit(
-        SSDPClientEvents.SSDP_MESSAGE_RECEIVED,
-        new SSDPEvent(ssdpMessage)
+        SSDPClientEvents.SSDP_MESSAGE_RECEIVED, event
       );
     });
 
