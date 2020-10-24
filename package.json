@@ -1,0 +1,44 @@
+{
+  "name": "@codersparks-home-assistant/ssdp-client",
+  "version": "0.0.1",
+  "description": "An ssdp client that allows the querying of network resources using UPnP",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "transpile": "tsc",
+    "lint": "eslint --fix --ext .ts .",
+    "test": "echo \"Warning: no test specified\"",
+    "build": "npm run lint && npm run transpile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codersparks-home-assistant/ssdp-client.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "author": "codersparks <codersparks@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codersparks-home-assistant/ssdp-client/issues"
+  },
+  "homepage": "https://github.com/codersparks-home-assistant/ssdp-client#readme",
+  "devDependencies": {
+    "@tsconfig/node12": "^1.0.7",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.13.0",
+    "eslint-config-typescript": "^3.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2",
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "@log4js-node/log4js-api": "^1.0.2",
+    "@types/node": "^14.14.2"
+  }
+}
