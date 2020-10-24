@@ -16,6 +16,8 @@ class SSDPClient extends EventEmitter {
   socket: Socket = createSocket({ type: "udp4", reuseAddr: true });
 
   startDeviceScan = (): void => {
+
+    logger.info("Starting scanning...");
     this.socket.on("listening", () => {
       this.socket.addMembership(SSDP_HOST);
       this.socket.setBroadcast(true);
@@ -26,7 +28,12 @@ class SSDPClient extends EventEmitter {
           ":" +
           this.socket.address().port
       );
+
     });
+
+    this.socket.on('error', (error) => {
+      logger.error(error);
+    })
 
     this.socket.on("message", (message) => {
       const ssdpMessage = message.toString();
