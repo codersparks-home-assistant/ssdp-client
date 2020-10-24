@@ -13,7 +13,7 @@ export class SSDPEvent {
   usn = "";
   other: { name: string; value: string }[] = [];
 
-  constructor(ssdpResponse: string) {
+  init = (ssdpResponse: string) => {
     const responseLines: string[] = ssdpResponse.split(/\r?\n/);
 
     logger.debug("Response Lines:" + responseLines);
@@ -25,8 +25,6 @@ export class SSDPEvent {
 
         let header:string = header_value[0];
         let value:string = header_value[1];
-
-        logger.debug("Header: " + header + " value: " + value);
 
         switch (header.trim()) {
           case "HOST":
