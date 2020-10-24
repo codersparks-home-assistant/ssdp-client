@@ -11,7 +11,8 @@
     "transpile": "tsc",
     "lint": "eslint --fix --ext .ts .",
     "test": "echo \"Warning: no test specified\"",
-    "build": "npm run lint && npm run transpile"
+    "build": "npm run lint && npm run transpile",
+    "release-patch": "npm version patch && npm run build && npm publish"
   },
   "repository": {
     "type": "git",
