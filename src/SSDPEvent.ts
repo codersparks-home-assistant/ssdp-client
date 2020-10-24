@@ -28,8 +28,9 @@ export class SSDPEvent {
 
         logger.debug("Header: " + header + " value: " + value);
 
-        switch (header) {
+        switch (header.trim()) {
           case "HOST":
+            logger.debug("found host: " + value.trim());
             this.host = value.trim();
             break;
           case "LOCATION":
