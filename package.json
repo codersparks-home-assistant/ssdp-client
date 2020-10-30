@@ -1,6 +1,6 @@
 {
   "name": "@codersparks-home-assistant/ssdp-client",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "An ssdp client that allows the querying of network resources using UPnP",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
