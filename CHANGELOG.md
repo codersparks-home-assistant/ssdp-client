@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.7 (2020-10-30)
+
+
+### Bug Fixes
+
+* just making sure this is working ([876ada6](https://github.com/codersparks-home-assistant/ssdp-client/commit/876ada6345e79325a179afa076dbfa1b441ebb51))
+
 ### 0.0.6 (2020-10-30)
 
 ### 0.0.5 (2020-10-30)
