@@ -1,6 +1,6 @@
 {
   "name": "@codersparks-home-assistant/ssdp-client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An ssdp client that allows the querying of network resources using UPnP",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -11,9 +11,18 @@
     "clean": "rimraf dist",
     "transpile": "tsc",
     "lint": "eslint --fix --ext .ts .",
-    "test": "jest",
+    "test": "echo 'WARANING: Not yet implemented'",
     "build": "npm run lint && npm run transpile",
-    "release-patch": "npm run clean && npm run build && npm version patch && npm publish"
+    "release-patch": "npm run clean && npm run build && npm version patch && npm publish",
+    "commit": "git-cz",
+    "prettier:check": "prettier --check 'src/**/*.{js,ts}'",
+    "validate": "run-s test lint prettier:check",
+    "prerelease": "git checkout main && git pull origin main && npm i && run-s validate  && git-authors-cli && git add .",
+    "release": "standard-version -a",
+    "postrelease": "run-s release:*",
+    "release:tags": "git push --follow-tags origin main",
+    "ci:validate": "rm -rf node_modules && npm ci && npm run validate",
+    "prepublishOnly": "npm run ci:validate && npm run build"
   },
   "repository": {
     "type": "git",
@@ -26,20 +35,41 @@
   },
   "homepage": "https://github.com/codersparks-home-assistant/ssdp-client#readme",
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@tsconfig/node12": "^1.0.7",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
     "@typescript-eslint/parser": "^4.4.1",
-    "eslint": "^7.11.0",
+    "commitizen": "^4.2.2",
+    "eslint": "^7.12.0",
     "eslint-config-prettier": "^6.13.0",
     "eslint-config-typescript": "^3.0.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "git-authors-cli": "^1.0.31",
+    "husky": "^4.3.0",
     "jest": "^26.6.1",
+    "lint-staged": "^10.5.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
     "rimraf": "^3.0.2",
+    "standard-version": "^9.0.0",
     "typescript": "^4.0.3"
   },
   "dependencies": {
     "@log4js-node/log4js-api": "^1.0.2",
     "@types/node": "^14.14.2"
-  }
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "contributors": [
+    "codersparks <codersparks@gmail.com>"
+  ]
 }
