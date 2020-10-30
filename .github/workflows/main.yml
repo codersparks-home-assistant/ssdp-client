@@ -26,6 +26,9 @@ jobs:
         uses: actions/setup-node@v2.1.2
         with:
           node-version: 15.x
+
+      - name: set author details for chores
+        run: git config -g user.name "Codersparks Home Assistant Auto Releaser" && git config --global user.email none@example.com
           
       - name: Perform release
         run: npm run release
